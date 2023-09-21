@@ -48,13 +48,6 @@ Y_pred = knn.predict(X_test)
 #Write to file
 X_set = np.append(X_set, X_test, axis=0)
 Y_set = np.append(Y_set, Y_pred, axis=0)
-
-#seen = set()
-#X_set = [item for item in X_set if not(tuple(item) in seen or seen.add(tuple(item)))]
-#print(X_set)
-
-
-
 resultX = []
 resultY = []
 iter = 0
@@ -66,6 +59,28 @@ for i in X_set:
     iter = iter + 1
 X_set = np.array(resultX)
 Y_set = np.array(resultY)
-df = pd.DataFrame(X_set, Y_set)
+X_set_save = np.array([])
+for i in X_set:
+    ch = str(i[0]) + " " + str(i[1])
+    X_set_save = np.append(X_set_save, ch)
+data_set = np.array([])
+for i in range(len(X_set)):
+    data_set = np.append(data_set, ([[X_set_save[i]], [Y_set[i]]]))
+new_list = []
+# Iterate over the original list up to the second-to-last element with a step of 2
+for i in range(0, len(data_set) - 1, 2):
+    # Create a 2D NumPy array with the first two elements as a single string and the third element
+    elements = [data_set[i], data_set[i + 1]]
+    new_array = np.array(elements).reshape(1, -1)
+    new_list.append(new_array)
+
+# If there's a last element, add it separately
+if len(data_set) % 2 != 0:
+    new_list.append(np.array([data_set[-1], ""]))
+
+# Combine the 2D arrays into a single 2D NumPy array
+result_array = np.vstack(new_list)
+
+df = pd.DataFrame(result_array)
 df.to_excel('Data.xlsx', index=False, header=False)
 
