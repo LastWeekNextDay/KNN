@@ -1,5 +1,7 @@
 from collections import deque
 
+import pandas as pd
+
 from KNN import KNN
 from openpyxl import load_workbook
 import numpy as np
@@ -39,7 +41,7 @@ for X in colA_test:
 X_test = np.array(a)
 
 #Prediction
-knn = KNN(k=3)
+knn = KNN(k=1)
 knn.fit(X_set, Y_set)
 Y_pred = knn.predict(X_test)
 
