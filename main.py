@@ -2,6 +2,7 @@ from collections import deque
 
 import pandas as pd
 
+from ImprovedKnn import ImprovedKNN
 from KNN import KNN
 from openpyxl import load_workbook
 import numpy as np
