@@ -47,6 +47,10 @@ cluster_labels = kmeans.fit_predict(X_set)
 for cluster_num in range(3):
     plt.scatter(X_set[cluster_labels == cluster_num, 0], X_set[cluster_labels == cluster_num, 1], label=f'Cluster {cluster_num + 1}')
 
+# Optionally, plot the cluster centroids
+cluster_centers = kmeans.cluster_centers_
+plt.scatter(cluster_centers[:, 0], cluster_centers[:, 1], s=100, c='black', marker='X', label='Centroids')
+
 # Getting the number of iterations
 iterations = kmeans.n_iter_
 print("Number of iterations:", iterations)
