@@ -88,7 +88,7 @@ Y_pred = knn.predict(X_test)
 #df.to_excel('Data.xlsx', index=False, header=False)
 
 # Clustering
-kmeans = KMeans(n_clusters=3, random_state=0)
+kmeans = KMeans(n_clusters=2, random_state=0)
 cluster_labels = kmeans.fit_predict(X_set)
 
 # Create a scatter plot for each cluster
@@ -108,6 +108,10 @@ plt.show()
 # Create and fit the improved KNN model with cluster labels
 improved_knn = ImprovedKNN(k=1)
 improved_knn.fit(X_set, cluster_labels)
+
+# Getting the number of iterations
+iterations = kmeans.n_iter_
+print("Number of iterations:", iterations)
 
 # Predict cluster labels for the test data
 cluster_predictions = improved_knn.predict(X_test)
