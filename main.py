@@ -99,12 +99,6 @@ for cluster_num in range(3):
 cluster_centers = kmeans.cluster_centers_
 plt.scatter(cluster_centers[:, 0], cluster_centers[:, 1], s=100, c='black', marker='X', label='Centroids')
 
-plt.xlabel('Feature 1')
-plt.ylabel('Feature 2')
-plt.legend()
-plt.title('Cluster Visualization')
-plt.show()
-
 # Create and fit the improved KNN model with cluster labels
 improved_knn = ImprovedKNN(k=1)
 improved_knn.fit(X_set, cluster_labels)
@@ -129,4 +123,13 @@ print("\nCluster Legend:")
 for cluster_label in set(cluster_predictions):
     cluster_visual = f"[{cluster_label}]"
     print(f"Cluster {cluster_label}: {cluster_visual}")
+
+
+plt.xlabel('Feature 1')
+plt.ylabel('Feature 2')
+plt.legend()
+plt.title('Cluster Visualization')
+plt.show()
+
+
 
