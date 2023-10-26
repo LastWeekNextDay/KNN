@@ -54,6 +54,7 @@ cluster_centers = kmeans.cluster_centers_
 # Figure 1
 # Create a scatter plot for each cluster
 plt.figure('KNN++', figsize=[3,3])
+
 for cluster_num in range(ClusterNum):
     plt.scatter(X_set[cluster_labels == cluster_num, 0], X_set[cluster_labels == cluster_num, 1], label=f'Cluster {cluster_num + 1}')
 plt.scatter(cluster_centers[:, 0], cluster_centers[:, 1], s=100, c='black', marker='X', label='Centroids')
