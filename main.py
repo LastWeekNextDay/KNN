@@ -38,27 +38,34 @@ for X in colA_test:
     E = list(R)
     a.append(E)
 X_test = np.array(a)
-
+# Number of clusters
+ClusterNum = 2
 # Clustering
-kmeans = KMeans(n_clusters=2, random_state=0)
+kmeans = KMeans(n_clusters=ClusterNum, random_state=0)
 cluster_labels = kmeans.fit_predict(X_set)
-
-# Create a scatter plot for each cluster
-for cluster_num in range(2):
-    plt.scatter(X_set[cluster_labels == cluster_num, 0], X_set[cluster_labels == cluster_num, 1], label=f'Cluster {cluster_num + 1}')
-
-# Optionally, plot the cluster centroids
-cluster_centers = kmeans.cluster_centers_
-plt.scatter(cluster_centers[:, 0], cluster_centers[:, 1], s=100, c='black', marker='X', label='Centroids')
 
 # Getting the number of iterations
 iterations = kmeans.n_iter_
 print("Number of iterations:", iterations)
 
+# Optionally, plot the cluster centroids
+cluster_centers = kmeans.cluster_centers_
+
+# Figure 1
+# Create a scatter plot for each cluster
+plt.figure('KNN++', figsize=[3,3])
+for cluster_num in range(ClusterNum):
+    plt.scatter(X_set[cluster_labels == cluster_num, 0], X_set[cluster_labels == cluster_num, 1], label=f'Cluster {cluster_num + 1}')
+plt.scatter(cluster_centers[:, 0], cluster_centers[:, 1], s=100, c='black', marker='X', label='Centroids')
 plt.xlabel('X')
 plt.ylabel('Y')
 plt.legend()
 plt.title('Cluster Visualization (' + str(iterations) + ' iterations)')
+
+#Figure 2
+plt.figure('KNNRand')
+# Figure 3
+plt.figure('DBSCAN')
 plt.show()
 
 # Create and fit the improved KNN model with cluster labels
