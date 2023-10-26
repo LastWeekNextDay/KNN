@@ -44,7 +44,7 @@ kmeans = KMeans(n_clusters=2, random_state=0)
 cluster_labels = kmeans.fit_predict(X_set)
 
 # Create a scatter plot for each cluster
-for cluster_num in range(3):
+for cluster_num in range(2):
     plt.scatter(X_set[cluster_labels == cluster_num, 0], X_set[cluster_labels == cluster_num, 1], label=f'Cluster {cluster_num + 1}')
 
 # Optionally, plot the cluster centroids
